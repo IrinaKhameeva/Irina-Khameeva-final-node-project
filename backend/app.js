@@ -30,8 +30,26 @@ app.use(helmet({
   crossOriginOpenerPolicy: false,
   crossOriginResourcePolicy: false,
 }));
+
+const allowedOrigins = [
+    'http://localhost:8600',
+    'http://localhost:3000',
+    // Ensure this env var is correctly set to your production frontend URL
+    process.env.FRONTEND_URL
+];
 app.use(cors({
-  origin: ['http://localhost:8600', 'http://localhost:3000', process.env.FRONTEND_URL], // React app's URL
+  origin:(origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        // AND origins that are explicitly allowed.
+        if (!origin || allowedOrigins.includes(origin)) {
+            console.log(`Bypassed CORS request from origin: ${origin}`);
+            callback(null, true);
+        } else {
+            // Log the blocked origin for debugging
+            console.log(`Blocked CORS request from origin: ${origin}`);
+            callback(new Error('Not allowed by CORS'), false);
+        }
+    },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
