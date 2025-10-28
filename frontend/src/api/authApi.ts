@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://irina-khameeva-final-node-project.onrender.com/api/v1/auth';
+const API_URL = 'https://irina-khameeva-final-node-project.onrender.com/api/v1/auth';
 
 export interface LoginResponse {
   token: string;
