@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://irina-khameeva-final-node-project.onrender.com//api/v1/art';
+const API_URL = 'http://irina-khameeva-final-node-project.onrender.com/api/v1/art';
 
 // Типы
 export interface ArtObject {
