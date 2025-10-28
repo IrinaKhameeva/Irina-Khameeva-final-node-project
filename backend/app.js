@@ -26,7 +26,10 @@ app.use(rateLimiter({
 }));
 
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({
+  crossOriginOpenerPolicy: false,
+  crossOriginResourcePolicy: false,
+}));
 app.use(cors({
   origin: ['http://localhost:8600', 'http://localhost:3000', process.env.FRONTEND_URL], // React app's URL
   credentials: true,
