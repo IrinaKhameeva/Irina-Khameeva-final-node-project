@@ -35,6 +35,8 @@ app.use(cors({
 }));
 app.use(xss());
 
+console.log('CORS enabled for ' + process.env.FRONTEND_URL)
+
 
 // routes
 app.use('/api/v1/auth', authRouter);
