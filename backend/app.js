@@ -72,10 +72,17 @@ const port = process.env.PORT || 8300;
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
-    app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
-    );
+    //choose the correct database based on environment
+    let mongoURL = process.env.MONGO_URI;
+    if (process.env.NODE_ENV === "test") {
+      mongoURL = process.env.MONGO_URI_TEST;
+    } 
+   //connect to database
+    await connectDB(mongoURL);
+   //start the server
+    app.listen(port, () => {
+      console.log(`Server is listening on port ${port}...`);
+    });
   } catch (error) {
     console.log(error);
   }

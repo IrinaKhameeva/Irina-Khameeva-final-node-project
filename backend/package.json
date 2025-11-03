@@ -15,7 +15,9 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "test": "cross-env NODE_ENV=test mocha tests/*.js --timeout 5000 --exit"
+
   },
   "dependencies": {
     "axios": "^1.12.2",
@@ -37,6 +39,13 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@faker-js/faker": "^10.1.0",
+    "chai": "^5.3.3",
+    "chai-http": "^5.1.2",
+    "cross-env": "^10.1.0",
+    "factory-bot": "^6.3.1",
+    "mocha": "^11.7.4",
+    "nodemon": "^3.1.10",
+    "puppeteer": "^24.27.0"
   }
 }
